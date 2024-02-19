@@ -145,6 +145,7 @@ function updateExcelAutomotive12() {
 }
 
 function openFile(fileName) {
-  const filePath = './forms/' + fileName;
+  // Directly open the file without specifying the folder path
+  const filePath = fileName;
   window.open(filePath, '_blank');
 }

@@ -145,7 +145,6 @@ function updateExcelSTEM12() {
 }
 
 function openFile(fileName) {
-  // Directly open the file without specifying the folder path
-  const filePath = fileName;
+  const filePath = './forms/' + fileName;
   window.open(filePath, '_blank');
 }

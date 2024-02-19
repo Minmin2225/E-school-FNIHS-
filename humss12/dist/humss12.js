@@ -8,33 +8,6 @@ const sectionInputHUMSS12 = document.getElementById('section-humss12');
 const recordListHUMSS12 = document.getElementById('record-list-humss12');
 const editIndexInputHUMSS12 = document.getElementById('edit-index-humss12');
 
-function updateStrandsHUMSS12() {
-  const trackSelectHUMSS12 = document.getElementById('track-humss12');
-  const strandSelectHUMSS12 = document.getElementById('strand-humss12');
-  strandSelectHUMSS12.innerHTML = '';
-  if (trackSelectHUMSS12.value === 'Academic') {
-    const academicStrandsHUMSS12 = ['ABM', 'STEM', 'HUMSS'];
-    academicStrandsHUMSS12.forEach(strand => {
-      const option = document.createElement('option');
-      option.value = strand;
-      option.textContent = strand;
-      strandSelectHUMSS12.appendChild(option);
-    });
-  } else if (trackSelectHUMSS12.value === 'TVL') {
-    const tvlStrandsHUMSS12 = ['ICT', 'Automotive', 'HE', 'EIM'];
-    tvlStrandsHUMSS12.forEach(strand => {
-      const option = document.createElement('option');
-      option.value = strand;
-      option.textContent = strand;
-      strandSelectHUMSS12.appendChild(option);
-    });
-  } else {
-    const defaultOption = document.createElement('option');
-    defaultOption.value = '';
-    defaultOption.textContent = 'Select Strand';
-    strandSelectHUMSS12.appendChild(defaultOption);
-  }
-}
 
 let recordsHUMSS12 = JSON.parse(localStorage.getItem('recordsHUMSS12')) || [];
 displayRecordsHUMSS12();

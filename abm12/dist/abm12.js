@@ -8,33 +8,6 @@ const sectionInputABM12 = document.getElementById('section-abm12');
 const recordListABM12 = document.getElementById('record-list-abm12');
 const editIndexInputABM12 = document.getElementById('edit-index-abm12');
 
-function updateStrandsABM12() {
-  const trackSelectABM12 = document.getElementById('track-abm12');
-  const strandSelectABM12 = document.getElementById('strand-abm12');
-  strandSelectABM12.innerHTML = '';
-  if (trackSelectABM12.value === 'Academic') {
-      const academicStrandsABM12 = ['ABM', 'STEM', 'HUMSS'];
-      academicStrandsABM12.forEach(strand => {
-          const option = document.createElement('option');
-          option.value = strand;
-          option.textContent = strand;
-          strandSelectABM12.appendChild(option);
-      });
-  } else if (trackSelectABM12.value === 'TVL') {
-      const tvlStrandsABM12 = ['ICT', 'Automotive', 'HE', 'EIM'];
-      tvlStrandsABM12.forEach(strand => {
-          const option = document.createElement('option');
-          option.value = strand;
-          option.textContent = strand;
-          strandSelectABM12.appendChild(option);
-      });
-  } else {
-      const defaultOption = document.createElement('option');
-      defaultOption.value = '';
-      defaultOption.textContent = 'Select Strand';
-      strandSelectABM12.appendChild(defaultOption);
-  }
-}
 
 let recordsABM12 = JSON.parse(localStorage.getItem('recordsABM12')) || [];
 displayRecordsABM12();

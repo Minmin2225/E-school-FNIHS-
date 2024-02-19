@@ -8,33 +8,7 @@ const sectionInputHUMSS11 = document.getElementById('section-humss11');
 const recordListHUMSS11 = document.getElementById('record-list-humss11');
 const editIndexInputHUMSS11 = document.getElementById('edit-index-humss11');
 
-function updateStrandsHUMSS11() {
-  const trackSelectHUMSS11 = document.getElementById('track-humss11');
-  const strandSelectHUMSS11 = document.getElementById('strand-humss11');
-  strandSelectHUMSS11.innerHTML = '';
-  if (trackSelectHUMSS11.value === 'Academic') {
-    const academicStrandsHUMSS11 = ['ABM', 'STEM', 'HUMSS'];
-    academicStrandsHUMSS11.forEach(strand => {
-      const option = document.createElement('option');
-      option.value = strand;
-      option.textContent = strand;
-      strandSelectHUMSS11.appendChild(option);
-    });
-  } else if (trackSelectHUMSS11.value === 'TVL') {
-    const tvlStrandsHUMSS11 = ['ICT', 'Automotive', 'HE', 'EIM'];
-    tvlStrandsHUMSS11.forEach(strand => {
-      const option = document.createElement('option');
-      option.value = strand;
-      option.textContent = strand;
-      strandSelectHUMSS11.appendChild(option);
-    });
-  } else {
-    const defaultOption = document.createElement('option');
-    defaultOption.value = '';
-    defaultOption.textContent = 'Select Strand';
-    strandSelectHUMSS11.appendChild(defaultOption);
-  }
-}
+
 
 let recordsHUMSS11 = JSON.parse(localStorage.getItem('recordsHUMSS11')) || [];
 displayRecordsHUMSS11();

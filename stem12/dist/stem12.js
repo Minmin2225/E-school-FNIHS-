@@ -8,34 +8,6 @@ const sectionInputSTEM12 = document.getElementById('section-stem12');
 const recordListSTEM12 = document.getElementById('record-list-stem12');
 const editIndexInputSTEM12 = document.getElementById('edit-index-stem12');
 
-function updateStrandsSTEM12() {
-  const trackSelectSTEM12 = document.getElementById('track-stem12');
-  const strandSelectSTEM12 = document.getElementById('strand-stem12');
-  strandSelectSTEM12.innerHTML = '';
-  if (trackSelectSTEM12.value === 'Academic') {
-      const academicStrandsSTEM12 = ['STEM', 'ABM', 'HUMSS'];
-      academicStrandsSTEM12.forEach(strand => {
-          const option = document.createElement('option');
-          option.value = strand;
-          option.textContent = strand;
-          strandSelectSTEM12.appendChild(option);
-      });
-  } else if (trackSelectSTEM12.value === 'TVL') {
-      const tvlStrandsSTEM12 = ['ICT', 'Automotive', 'HE', 'EIM'];
-      tvlStrandsSTEM12.forEach(strand => {
-          const option = document.createElement('option');
-          option.value = strand;
-          option.textContent = strand;
-          strandSelectSTEM12.appendChild(option);
-      });
-  } else {
-      const defaultOption = document.createElement('option');
-      defaultOption.value = '';
-      defaultOption.textContent = 'Select Strand';
-      strandSelectSTEM12.appendChild(defaultOption);
-  }
-}
-
 let recordsSTEM12 = JSON.parse(localStorage.getItem('recordsSTEM12')) || [];
 displayRecordsSTEM12();
 

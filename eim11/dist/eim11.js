@@ -8,33 +8,7 @@ const sectionInputEIM11 = document.getElementById('section-eim11');
 const recordListEIM11 = document.getElementById('record-list-eim11');
 const editIndexInputEIM11 = document.getElementById('edit-index-eim11');
 
-function updateStrandsEIM11() {
-  const trackSelectEIM11 = document.getElementById('track-eim11');
-  const strandSelectEIM11 = document.getElementById('strand-eim11');
-  strandSelectEIM11.innerHTML = '';
-  if (trackSelectEIM11.value === 'TVL') {
-      const tvlStrandsEIM11 = ['EIM', 'Automotive', 'ICT', 'HE'];
-      tvlStrandsEIM11.forEach(strand => {
-          const option = document.createElement('option');
-          option.value = strand;
-          option.textContent = strand;
-          strandSelectEIM11.appendChild(option);
-      });
-  } else if (trackSelectEIM11.value === 'Academic') {
-      const academicStrandsEIM11 = ['STEM', 'ABM', 'HUMSS'];
-      academicStrandsEIM11.forEach(strand => {
-          const option = document.createElement('option');
-          option.value = strand;
-          option.textContent = strand;
-          strandSelectEIM11.appendChild(option);
-      });
-  } else {
-      const defaultOption = document.createElement('option');
-      defaultOption.value = '';
-      defaultOption.textContent = 'Select Strand';
-      strandSelectEIM11.appendChild(defaultOption);
-  }
-}
+
 
 let recordsEIM11 = JSON.parse(localStorage.getItem('recordsEIM11')) || [];
 displayRecordsEIM11();

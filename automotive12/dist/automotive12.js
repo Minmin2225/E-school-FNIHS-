@@ -8,33 +8,6 @@ const sectionInputAutomotive12 = document.getElementById('section-automotive12')
 const recordListAutomotive12 = document.getElementById('record-list-automotive12');
 const editIndexInputAutomotive12 = document.getElementById('edit-index-automotive12');
 
-function updateStrandsAutomotive12() {
-  const trackSelectAutomotive12 = document.getElementById('track-automotive12');
-  const strandSelectAutomotive12 = document.getElementById('strand-automotive12');
-  strandSelectAutomotive12.innerHTML = '';
-  if (trackSelectAutomotive12.value === 'Academic') {
-      const academicStrandsAutomotive12 = ['ABM', 'STEM', 'HUMSS'];
-      academicStrandsAutomotive12.forEach(strand => {
-          const option = document.createElement('option');
-          option.value = strand;
-          option.textContent = strand;
-          strandSelectAutomotive12.appendChild(option);
-      });
-  } else if (trackSelectAutomotive12.value === 'TVL') {
-      const tvlStrandsAutomotive12 = ['ICT', 'Automotive', 'HE', 'EIM'];
-      tvlStrandsAutomotive12.forEach(strand => {
-          const option = document.createElement('option');
-          option.value = strand;
-          option.textContent = strand;
-          strandSelectAutomotive12.appendChild(option);
-      });
-  } else {
-      const defaultOption = document.createElement('option');
-      defaultOption.value = '';
-      defaultOption.textContent = 'Select Strand';
-      strandSelectAutomotive12.appendChild(defaultOption);
-  }
-}
 
 let recordsAutomotive12 = JSON.parse(localStorage.getItem('recordsAutomotive12')) || [];
 displayRecordsAutomotive12();

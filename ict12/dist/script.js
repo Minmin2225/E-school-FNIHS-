@@ -8,34 +8,6 @@ const sectionInput = document.getElementById('section');
 const recordList = document.getElementById('record-list');
 const editIndexInput = document.getElementById('edit-index');
 
-function updateStrands() {
-  const trackSelect = document.getElementById('track');
-  const strandSelect = document.getElementById('strand');
-  strandSelect.innerHTML = '';
-  if (trackSelect.value === 'TVL') {
-      const tvlStrands = ['ICT', 'Automotive', 'HE', 'EIM'];
-      tvlStrands.forEach(strand => {
-          const option = document.createElement('option');
-          option.value = strand;
-          option.textContent = strand;
-          strandSelect.appendChild(option);
-      });
-  } else if (trackSelect.value === 'Academic') {
-      const academicStrands = ['STEM', 'HUMSS', 'ABM'];
-      academicStrands.forEach(strand => {
-          const option = document.createElement('option');
-          option.value = strand;
-          option.textContent = strand;
-          strandSelect.appendChild(option);
-      });
-  } else {
-      const defaultOption = document.createElement('option');
-      defaultOption.value = '';
-      defaultOption.textContent = 'Select Strand';
-      strandSelect.appendChild(defaultOption);
-  }
-}
-
 // Load records from local storage when the page loads
 let records = JSON.parse(localStorage.getItem('records')) || [];
 displayRecords();

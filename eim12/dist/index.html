@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grade 12 EIM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    body {
+      background-image: url('/images/eim.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 20px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      background-image: url('/images/eim2.jpg');
+      background-color: rgba(255, 0, 0, 0.3);
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+
+    .btn-container {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    .btn-container .btn {
+      padding: 8px 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .btn-container .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .deleteButton {
+      text-align: center;
+    }
+
+    .deleteButton button {
+      padding: 10px 20px;
+      background-color: #dc3545;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .deleteButton button:hover {
+      background-color: #c82333;
+    }
+
+    .confirm-delete button {
+      padding: 8px 16px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .confirm-delete button:hover {
+      background-color: #a71d1d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="btn-container">
+      <button class="btn" onclick="goHome()">Home</button>
+      <button class="btn" onclick="exportToExcel()">Export to Excel</button>
+    </div>
+
+    <div class="title"></div>
+    <div class="left">
+      <h1>EIM (12) SF10</h1>
+      <form id="record-form-eim12">
+        <input type="text" id="last-name-eim12" placeholder="Last Name" required>
+        <input type="text" id="first-name-eim12" placeholder="First Name" required>
+        <input type="text" id="middle-name-eim12" placeholder="Middle Name" required>
+        <select id="track-eim12" required onchange="updateStrandsEIM12()">
+        
+          <option value="TVL">TVL</option>
+        </select>
+        <select id="strand-eim12" required>
+          <option value="EIM" selected>EIM</option>
+        </select>
+        <select id="section-eim12" required>
+          <option value="">Select Section</option>
+          <option value="Motivated">Motivated</option>
+         
+        </select>
+        <label for="file-input-eim12" style="color: white;">Choose SF10 File:</label>
+        <input type="file" id="file-input-eim12" accept=".pdf,.doc,.docx,.txt" required>
+        <button type="submit">Add Record</button>
+        <input type="hidden" id="edit-index-eim12" value="-1">
+      </form>
+    </div>
+    <div class="right">
+      <h2>Records</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Track</th>
+            <th>Strand</th>
+            <th>Section</th>
+            <th>SF10</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="record-list-eim12"></tbody>
+      </table>
+    </div>
+  </div>
+
+<script src="./eim12.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+<script>
+  function goHome() {
+    window.location.href = "/";
+  }
+
+  function exportToExcel() {
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(recordsEIM12);
+    XLSX.utils.book_append_sheet(wb, ws, "Records");
+    XLSX.writeFile(wb, "EIM12.xlsx");
+  }
+</script>
+</body>
+</html>

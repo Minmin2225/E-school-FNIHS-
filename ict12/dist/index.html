@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grade 12 ICT</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    body {
+      background-image: url('/images/ict.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 20px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      background-image: url('/images/ict2.jpg'); /* Blue image background */
+      background-color: rgba(0, 0, 255, 0.3); /* Semi-transparent blue background */
+      background-repeat: no-repeat; /* Set background image to not repeat */
+      background-size: cover; /* Cover the entire container with the background image */
+      position: relative; /* Make the container position relative */
+    }
+
+    .btn-container {
+      position: absolute; /* Position the button container */
+      top: 10px; /* Adjust top position */
+      right: 10px; /* Adjust right position */
+    }
+
+    .btn-container .btn {
+      padding: 8px 16px; /* Adjusted padding for smaller buttons */
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px; /* Add margin between buttons */
+    }
+
+    .btn-container .btn:hover {
+      background-color: #0056b3;
+    }
+    .btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .deleteButton {
+      text-align: center;
+    }
+
+    .deleteButton button {
+      padding: 10px 20px;
+      background-color: #dc3545; /* Red color for delete button */
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .deleteButton button:hover {
+      background-color: #c82333; /* Darker red on hover */
+    }
+
+    .confirm-delete button {
+      padding: 8px 16px; /* Adjusted padding for smaller buttons */
+      background-color: #28a745; /* Green color for confirmation buttons */
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px; /* Add margin between buttons */
+    }
+
+    .confirm-delete button:hover {
+      background-color: #a71d1d; /* Darker green on hover */
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Buttons container -->
+        <div class="btn-container">
+          <!-- Home button -->
+          <button class="btn" onclick="goHome()">Home</button>
+          <!-- Export to Excel button -->
+          <button class="btn" onclick="exportToExcel()">Export to Excel</button>
+        </div>
+
+        <div class="title">
+            
+        </div>
+        <div class="left">
+            <h1>ICT (12) SF10</h1>
+            <!-- Student Registration Form -->
+            <form id="record-form">
+                <!-- Last Name Input -->
+                <input type="text" id="last-name" placeholder="Last Name" required>
+                <!-- First Name Input -->
+                <input type="text" id="first-name" placeholder="First Name" required>
+                <!-- Middle Name Input -->
+                <input type="text" id="middle-name" placeholder="Middle Name" required>
+                <!-- Track Selection -->
+                <select id="track" required onchange="updateStrands()">
+                    <option value="">Select Track</option>
+                    <option value="TVL">TVL</option>
+                  
+                </select>
+                <!-- Strand Selection -->
+                <select id="strand" required>
+                    <option value="">Select Strand</option>
+                    <option value="ICT">ICT</option>
+                </select>
+                <!-- Section Selection -->
+                <select id="section" required>
+                    <option value="">Select Section</option>
+                    <option value="Buoyant">Buoyant</option>
+                    <option value="Creative(ALS)">Creative(ALS)</option>
+                    
+                </select>
+                <!-- File Input for SF10 -->
+                <label for="file-input" style="color: white;">Choose SF10 File:</label>
+                <input type="file" id="file-input" accept=".pdf,.doc,.docx,.txt" required>
+                <!-- Add Record Button -->
+                <button type="submit">Add Record</button>
+                <!-- Hidden Input for Edit Index -->
+                <input type="hidden" id="edit-index" value="-1">
+                
+            </form>
+        </div>
+        <div class="right">
+            <h2>Records</h2>
+            <!-- Records Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <!-- Name -->
+                        <th>Name <!-- Please fill out this field --></th>
+                        <!-- Track -->
+                        <th>Track</th> <!-- Modified Field -->
+                        <!-- Strand -->
+                        <th>Strand</th> <!-- Modified Field -->
+                        <!-- Section -->
+                        <th>Section</th> <!-- New Field -->
+                        <!-- SF10 -->
+                        <th>SF10</th> <!-- SF10 Column -->
+                        <!-- Edit -->
+                        <th>Edit</th>
+                        <!-- Delete -->
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="record-list"></tbody>
+            </table>
+        </div>
+    </div>
+
+<script src="./script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+<script>
+  function goHome() {
+    window.location.href = "/";
+  }
+
+  function exportToExcel() {
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(records);
+    XLSX.utils.book_append_sheet(wb, ws, "Records");
+    XLSX.writeFile(wb, "ICT12.xlsx");
+    
+  }
+</script>
+</body>
+</html>

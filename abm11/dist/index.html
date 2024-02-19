@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grade 12 ICT</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    body {
+      background-image: url('/images/ict.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 20px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      background-image: url('/images/ict2.jpg'); /* Blue image background */
+      background-color: rgba(0, 0, 255, 0.3); /* Semi-transparent blue background */
+      background-repeat: no-repeat; /* Set background image to not repeat */
+      background-size: cover; /* Cover the entire container with the background image */
+      position: relative; /* Make the container position relative */
+    }
+
+    .btn-container {
+      position: absolute; /* Position the button container */
+      top: 10px; /* Adjust top position */
+      right: 10px; /* Adjust right position */
+    }
+
+    .btn-container .btn {
+      padding: 8px 16px; /* Adjusted padding for smaller buttons */
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px; /* Add margin between buttons */
+    }
+
+    .btn-container .btn:hover {
+      background-color: #0056b3;
+    }
+    .btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .deleteButton {
+      text-align: center;
+    }
+
+    .deleteButton button {
+      padding: 10px 20px;
+      background-color: #dc3545; /* Red color for delete button */
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .deleteButton button:hover {
+      background-color: #c82333; /* Darker red on hover */
+    }
+
+    .confirm-delete button {
+      padding: 8px 16px; /* Adjusted padding for smaller buttons */
+      background-color: #28a745; /* Green color for confirmation buttons */
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px; /* Add margin between buttons */
+    }
+
+    .confirm-delete button:hover {
+      background-color: #a71d1d; /* Darker green on hover */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="btn-container">
+      <button class="btn" onclick="goHome()">Home</button>
+      <button class="btn" onclick="exportToExcel()">Export to Excel</button>
+    </div>
+
+    <div class="title"></div>
+    <div class="left">
+      <h1>ABM (11) SF10</h1>
+      <form id="record-form-abm11">
+        <input type="text" id="last-name-abm11" placeholder="Last Name" required>
+        <input type="text" id="first-name-abm11" placeholder="First Name" required>
+        <input type="text" id="middle-name-abm11" placeholder="Middle Name" required>
+        <select id="track-abm11" required onchange="updateStrandsABM11()">
+          <option value="Academic" selected>Academic</option>
+         
+        </select>
+        <select id="strand-abm11" required>
+          <option value="ABM" selected>ABM</option>
+        </select>
+        <select id="section-abm11" required>
+          <option value="">Select Section</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+        <label for="file-input-abm11" style="color: white;">Choose SF10 File:</label>
+        <input type="file" id="file-input-abm11" accept=".pdf,.doc,.docx,.txt" required>
+        <button type="submit">Add Record</button>
+        <input type="hidden" id="edit-index-abm11" value="-1">
+      </form>
+    </div>
+    <div class="right">
+      <h2>Records</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Track</th>
+            <th>Strand</th>
+            <th>Section</th>
+            <th>SF10</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="record-list-abm11"></tbody>
+      </table>
+    </div>
+  </div>
+
+<script src="./abm11.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+<script>
+  function goHome() {
+    window.location.href = "/";
+  }
+
+  function exportToExcel() {
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(recordsABM11);
+    XLSX.utils.book_append_sheet(wb, ws, "Records");
+    XLSX.writeFile(wb, "ABM11.xlsx");
+  }
+</script>
+</body>
+</html>
